@@ -1,0 +1,877 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="潇意-前端工程师" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="&amp;lt;编写可维护的JavaScript&amp;gt;读书笔记第三章 语句和表达式switch写法
+1、不建议case连续执行；
+2、default没有操作可以省略，但是必须加上注释；
+
+with
+1、严格模式下面不支持，不建议使用；
+
+for-in
+1、只用来遍历对象，不能用来遍历数组，遍历数组可能存在意想不到的结果; 对于遍历对象，最好用hasOwnProperty判断key值，避免遍历原型上的属性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="<编写可维护的JavaScript>读书笔记">
+<meta property="og:url" content="http://ning0707.com/2015/12/04/maintainable-code/index.html">
+<meta property="og:site_name" content="潇意-前端工程师">
+<meta property="og:description" content="&amp;lt;编写可维护的JavaScript&amp;gt;读书笔记第三章 语句和表达式switch写法
+1、不建议case连续执行；
+2、default没有操作可以省略，但是必须加上注释；
+
+with
+1、严格模式下面不支持，不建议使用；
+
+for-in
+1、只用来遍历对象，不能用来遍历数组，遍历数组可能存在意想不到的结果; 对于遍历对象，最好用hasOwnProperty判断key值，避免遍历原型上的属性">
+<meta property="og:updated_time" content="2016-01-13T03:40:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="<编写可维护的JavaScript>读书笔记">
+<meta name="twitter:description" content="&amp;lt;编写可维护的JavaScript&amp;gt;读书笔记第三章 语句和表达式switch写法
+1、不建议case连续执行；
+2、default没有操作可以省略，但是必须加上注释；
+
+with
+1、严格模式下面不支持，不建议使用；
+
+for-in
+1、只用来遍历对象，不能用来遍历数组，遍历数组可能存在意想不到的结果; 对于遍历对象，最好用hasOwnProperty判断key值，避免遍历原型上的属性">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always',
+    motion: true
+  };
+</script>
+
+  <title> <编写可维护的JavaScript>读书笔记 | 潇意-前端工程师 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3ec2aac61faec5c202bb97d21793f521";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">潇意-前端工程师</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">可以努力，绝不将就</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <编写可维护的JavaScript>读书笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-04T11:10:13+08:00" content="2015-12-04">
+              2015-12-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/04/maintainable-code/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/04/maintainable-code/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h1 id="lt-编写可维护的JavaScript-gt-读书笔记"><a href="#lt-编写可维护的JavaScript-gt-读书笔记" class="headerlink" title="&lt;编写可维护的JavaScript&gt;读书笔记"></a>&lt;编写可维护的JavaScript&gt;读书笔记</h1><h2 id="第三章-语句和表达式"><a href="#第三章-语句和表达式" class="headerlink" title="第三章 语句和表达式"></a>第三章 语句和表达式</h2><h3 id="switch写法"><a href="#switch写法" class="headerlink" title="switch写法"></a>switch写法</h3><ul>
+<li>1、不建议case连续执行；</li>
+<li>2、default没有操作可以省略，但是必须加上注释；</li>
+</ul>
+<h3 id="with"><a href="#with" class="headerlink" title="with"></a>with</h3><ul>
+<li>1、严格模式下面不支持，不建议使用；</li>
+</ul>
+<h3 id="for-in"><a href="#for-in" class="headerlink" title="for-in"></a>for-in</h3><ul>
+<li>1、只用来遍历对象，不能用来遍历数组，遍历数组可能存在意想不到的结果; 对于遍历对象，最好用hasOwnProperty判断key值，避免遍历原型上的属性</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">	<span class="keyword">if</span> (obj.hasOwnProperty(key)) &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(obj[key]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h3><p>不建议使用 continue 来退出本次循环；比如下面这样的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>, len=<span class="number">6</span>; i&lt;len; i++) &#123;</span><br><span class="line">	<span class="keyword">if</span>(i==<span class="number">2</span>)&#123;</span><br><span class="line">		<span class="keyword">continue</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//  执行相关操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样写语义性不好，可以采用如下的格式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>, len=<span class="number">6</span>; i&lt;len; i++) &#123;</span><br><span class="line">	<span class="keyword">if</span>(i!=<span class="number">2</span>)&#123;</span><br><span class="line">		 <span class="comment">// 执行相关操作</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="第七章-事件处理"><a href="#第七章-事件处理" class="headerlink" title="第七章 事件处理"></a>第七章 事件处理</h2><h3 id="隔离应用逻辑"><a href="#隔离应用逻辑" class="headerlink" title="隔离应用逻辑"></a>隔离应用逻辑</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 比较OK的写法</span></span><br><span class="line"><span class="keyword">var</span> MyApplication = &#123;</span><br><span class="line">    handleClick: <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.showPopup(event);</span><br><span class="line">    &#125;,</span><br><span class="line">    showPopup: <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> popup = <span class="built_in">document</span>.getElementById(<span class="string">"popup"</span>);</span><br><span class="line">        popup.style.left = event.clientX + <span class="string">"px"</span>;</span><br><span class="line">        popup.style.top = event.clientY + <span class="string">"px"</span>;</span><br><span class="line">        popup.className = <span class="string">"reveal"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;;</span><br><span class="line"> </span><br><span class="line"> addEventListener(element, <span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    MyApplication.handleClick(event);</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="不要分发event对象"><a href="#不要分发event对象" class="headerlink" title="不要分发event对象"></a>不要分发event对象</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> MyApplication = &#123;</span><br><span class="line">    handleClick: <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">        event.preventDefault();</span><br><span class="line">        event.stopPropagation();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">this</span>.showPopup(event.clientX, event.clientY);</span><br><span class="line">    &#125;,</span><br><span class="line">    showPopup: <span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> popup = <span class="built_in">document</span>.getElementById(<span class="string">"popup"</span>);</span><br><span class="line">        popup.style.left = x + <span class="string">"px"</span>;</span><br><span class="line">        popup.style.top = y + <span class="string">"px"</span>;</span><br><span class="line">        popup.className = <span class="string">"reveal"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;;</span><br><span class="line"> </span><br><span class="line"> addEventListener(element, <span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    MyApplication.handleClick(event);</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+<p>只把逻辑需要的数据传给参数, 这样也方便读者对进一步理解方法的用处，实现方法的解耦</p>
+<h2 id="第8章-避免“空比较”"><a href="#第8章-避免“空比较”" class="headerlink" title="第8章 避免“空比较”"></a>第8章 避免“空比较”</h2><h3 id="什么是空比较"><a href="#什么是空比较" class="headerlink" title="什么是空比较"></a>什么是空比较</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">process</span>(<span class="params">items</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(items != <span class="literal">null</span>)&#123;</span><br><span class="line">        items.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">            <span class="comment">// </span></span><br><span class="line">            <span class="built_in">console</span>.log(item);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>函数本身期待的是一个数组，空比较并不能避免出错，但有一点另外，如果数据本身期望的是null或者非null，比如节点；还是可以直接用===null或者!==null来处理。</p>
+<h3 id="有效比较"><a href="#有效比较" class="headerlink" title="有效比较"></a>有效比较</h3><ul>
+<li>1、对于字符串，数字，布尔值，undefined直接用typeof来判断。</li>
+<li>2、引用类型, 使用instanceof</li>
+</ul>
+<h3 id="检验数组"><a href="#检验数组" class="headerlink" title="检验数组"></a>检验数组</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArray</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="built_in">Array</span>.isArray == <span class="string">"function"</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Array</span>.isArray(value);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(value) === <span class="string">"[object Array]"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="检测对象的属性"><a href="#检测对象的属性" class="headerlink" title="检测对象的属性"></a>检测对象的属性</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isAttr</span>(<span class="params">name, object</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 拥有这个函数</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="string">"hasOwnProperty"</span> <span class="keyword">in</span> object &amp;&amp; object.hasOwnProperty(name))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(name <span class="keyword">in</span> object)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="将配置数据从代码中分离出来"><a href="#将配置数据从代码中分离出来" class="headerlink" title="将配置数据从代码中分离出来"></a>将配置数据从代码中分离出来</h2><h3 id="什么是配置数据"><a href="#什么是配置数据" class="headerlink" title="什么是配置数据"></a>什么是配置数据</h3><ul>
+<li>1、URL</li>
+<li>2、需要展现给用户的字符串</li>
+<li>3、重复的值</li>
+<li>4、设置（比如每页的配置项）</li>
+<li>5、任何可能发生变更的值</li>
+</ul>
+<h3 id="以什么样的方式抽离？"><a href="#以什么样的方式抽离？" class="headerlink" title="以什么样的方式抽离？"></a>以什么样的方式抽离？</h3><ul>
+<li>1、 请求服务端的json</li>
+<li>2、请求服务端的jsonp</li>
+<li>3、单独的JS文件</li>
+<li>4、直接放在JS代码的头部</li>
+</ul>
+<h2 id="抛出自定义错误"><a href="#抛出自定义错误" class="headerlink" title="抛出自定义错误"></a>抛出自定义错误</h2><h3 id="必须使用Error对象，如下所示"><a href="#必须使用Error对象，如下所示" class="headerlink" title="必须使用Error对象，如下所示"></a>必须使用Error对象，如下所示</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getDivs</span>(<span class="params">element</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(element &amp;&amp; element.getElementsByTagName)&#123;</span><br><span class="line">        <span class="keyword">return</span> element.getElementsByTagName(<span class="string">"div"</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"getDivs: argument must be a DOM element."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> body = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"body"</span>)[<span class="number">0</span>];</span><br><span class="line">getDivs(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="何时应该抛出错误"><a href="#何时应该抛出错误" class="headerlink" title="何时应该抛出错误"></a>何时应该抛出错误</h3><ul>
+<li>1、一旦修复了一个很难调试的错误，尝试增加一两个自定义错误。当再次发生错误时，这将有助于更容易地解决问题；</li>
+<li>2、如果增加编写代码，思考一下：“我希望[某些事情]不会发生，如果发生，我的代码会一团糟糕”。这时，如果“某些事情”发生，就抛出一个错误；</li>
+<li>3、如果正在编写的代码别人（不知道是谁）也会使用，思考一下他们使用的方式，在特定情况下抛出错误；</li>
+</ul>
+<h3 id="该使用try…catch还是throw"><a href="#该使用try…catch还是throw" class="headerlink" title="该使用try…catch还是throw?"></a>该使用try…catch还是throw?</h3><p>比较深层次的调用就用throw把错误抛出，最上层的错误还是要用try..catch捕获住。</p>
+<h3 id="构建自己的错误"><a href="#构建自己的错误" class="headerlink" title="构建自己的错误"></a>构建自己的错误</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyError</span>(<span class="params">message</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.message = message;</span><br><span class="line">&#125;</span><br><span class="line">MyError.prototype = <span class="keyword">new</span> <span class="built_in">Error</span>();</span><br></pre></td></tr></table></figure>
+<p>如何捕获？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="comment">// 处理某些操作</span></span><br><span class="line">    &#125;<span class="keyword">catch</span>(ex)&#123;</span><br><span class="line">        <span class="keyword">if</span>(ex <span class="keyword">instanceof</span> MyError)&#123;</span><br><span class="line">            <span class="comment">// 处理一些操作</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">// 其他操作</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="不是你的对象不要动"><a href="#不是你的对象不要动" class="headerlink" title="不是你的对象不要动"></a>不是你的对象不要动</h2><h3 id="对于已存在的对象的处理原则："><a href="#对于已存在的对象的处理原则：" class="headerlink" title="对于已存在的对象的处理原则："></a>对于已存在的对象的处理原则：</h3><ul>
+<li>1、不覆盖方法</li>
+<li>2、不新增方法</li>
+<li>3、不删除方法</li>
+</ul>
+<h3 id="什么是门面模式"><a href="#什么是门面模式" class="headerlink" title="什么是门面模式"></a>什么是门面模式</h3><p>门面模式的意思是在一个对象上进行封装方法，然后把这些方法暴露给其他人用。为了避免直接操作原有对象上的方法。如下所示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">DOMWrapper</span>(<span class="params">element</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.element = element;</span><br><span class="line">&#125;</span><br><span class="line">DOMWrapper.prototype.addClass = <span class="function"><span class="keyword">function</span>(<span class="params">className</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.element.className += <span class="keyword">this</span>.element.className + <span class="string">" "</span>+className;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">DOMWrapper.prototype.remove = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.element.parentNode.removeChild(<span class="keyword">this</span>.element);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">var</span> domWrapper = <span class="keyword">new</span> DOMWrapper(<span class="built_in">document</span>.getElementById(<span class="string">"#div"</span>));</span><br><span class="line">domWrapper.addClass(<span class="string">"hide"</span>);</span><br><span class="line">domWrapper.remove();</span><br></pre></td></tr></table></figure>
+<h3 id="什么是Polyfill"><a href="#什么是Polyfill" class="headerlink" title="什么是Polyfill"></a>什么是Polyfill</h3><p> 针对一些现代浏览器实现了的方法在低版本的浏览器下模拟实现，达到兼容的目的；不过可能会实现的方法跟原生有出入，导致使用上出现问题。</p>
+<h3 id="阻止修改"><a href="#阻止修改" class="headerlink" title="阻止修改"></a>阻止修改</h3><ul>
+<li>1、阻止扩展（ Object.preventExtension() 和 Object.isExtensible()）</li>
+<li>2、密封( Object.seal() )</li>
+<li>3、冻结( Object.freeze() )<br>兼容：IE9+、Firefox 4+、Safari 5.1+、Opera 12+ 和  chrome</li>
+</ul>
+<h2 id="浏览器嗅探"><a href="#浏览器嗅探" class="headerlink" title="浏览器嗅探"></a>浏览器嗅探</h2><h3 id="User-Agent检测"><a href="#User-Agent检测" class="headerlink" title="User-Agent检测"></a>User-Agent检测</h3><ul>
+<li>1、应该只检测IE8及以下的浏览器，不要试图去检测IE9及更高的版本；</li>
+<li>2、几乎所有的浏览器的User-Agent都可以被工具所更改；</li>
+</ul>
+<h3 id="特性检测"><a href="#特性检测" class="headerlink" title="特性检测"></a>特性检测</h3><p>特性检测比User-Agent检测更好的原因是只有当某个特性存在我才使用某个特性，不存在则不使用，可以避免浏览器升级导致某些特性发生变化，而导致代码发生错误。<br>比如下面这些代码</p>
+<ul>
+<li>1、getElementById方法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myGetElementById</span>(<span class="params">id</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">document</span>.getElementById)&#123; <span class="comment">//DOM</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">document</span>.getElementById(id);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">document</span>.all)&#123; <span class="comment">//IE</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">document</span>.all[id];</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">document</span>.layers)&#123; <span class="comment">// Netscape&lt;=4</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">document</span>.layers[id];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>2、requestAnimationFrame</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setAnimation</span>(<span class="params">callback</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">window</span>.requestAnimationFrame)&#123; <span class="comment">// 标准</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">window</span>.requestAnimationFrame(callback);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">window</span>.mozRequestAnimationFrame)&#123; <span class="comment">// firefox</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">window</span>.mozRequestAnimationFrame(callback);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">window</span>.webkitRequestAnimationFrame)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">window</span>.webkitRequestAnimationFrame(callback);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">window</span>.oRequestAnimationFrame)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">window</span>.oRequestAnimationFrame(callback);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">window</span>.msRequestAnimationFrame)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">window</span>.msRequestAnimationFrame(callback);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> setTimeout(callback, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="避免特性推断"><a href="#避免特性推断" class="headerlink" title="避免特性推断"></a>避免特性推断</h3><p>根据一个特性的存在推断出另一个特性的存在。推断只是假设并非事实。</p>
+<h3 id="避免浏览器推断"><a href="#避免浏览器推断" class="headerlink" title="避免浏览器推断"></a>避免浏览器推断</h3><p>什么是浏览器推断？<br>根据某个浏览器特性去推断浏览器的版本，这好比根据是否有会说话来判断是否是一个人，以部分属性来推断某个事物，从逻辑上也说不通。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>最好的办法是使用特性检测，退而求其次是User-Agent检测，避免使用特性推断和浏览器推断。</p>
+<h2 id="自动化"><a href="#自动化" class="headerlink" title="自动化"></a>自动化</h2><p>Douglas Adams说过：    </p>
+<p>“ 我相当乐意花一整天的时间通过编程把一个任务实现自动化，除非这个任务手动只需要10秒钟就能完成。”</p>
+<h2 id="文章和目录结构"><a href="#文章和目录结构" class="headerlink" title="文章和目录结构"></a>文章和目录结构</h2><h3 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h3><ul>
+<li>1、一个文件只包含一个对象</li>
+<li>2、相关文档用目录分组</li>
+<li>3、保持第三方代码独立</li>
+<li>4、确定创建位置。网站应当是可以配置的，使用编译后的目录而非源码目录。不要把编译后的内容提交到源码工程里。</li>
+<li>5、保持测试代码的完整性。你的javascript测试代码应该一并提交到项目工程中的一个显眼的位置。让开发人员很容易注意到遗漏测试的情况。</li>
+</ul>
+<h3 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h3><ul>
+<li>1、build<br>用来放置最终构建后的文件，理想情况下这个目录不应该提交；</li>
+<li>2、src<br>用来放置所有的源文件，包括用来进行文件分组的子目录；</li>
+<li>3、test或者tests<br>用来放置所有的测试文件。通常包含一些同源代码目录一一对应的子目录或文件</li>
+</ul>
+<h2 id="Ant"><a href="#Ant" class="headerlink" title="Ant"></a>Ant</h2><p>根目录中有个build.xml文件，同时Ant依赖于java环境，mac下已安装。具体使用参考&lt;编写可维护Javascript&gt;的第14章 page143</p>
+<h3 id="文件精简和压缩"><a href="#文件精简和压缩" class="headerlink" title="文件精简和压缩"></a>文件精简和压缩</h3><p>精简和压缩的区别在于：精简后的代码浏览器还可以查看，但是压缩后的代码需要浏览器处理之后才可以供人查看，比如gzip方式。服务器会设置返回文件的压缩方式。如下代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Encoding: gzip</span><br></pre></td></tr></table></figure></p>
+<h2 id="文档化"><a href="#文档化" class="headerlink" title="文档化"></a>文档化</h2><ul>
+<li>1、JSDoc Toolkit<br>语法参考：<a href="http://code.google.com/p/jsdoc-toolkit/w/list" target="_blank" rel="external">http://code.google.com/p/jsdoc-toolkit/w/list</a>;</li>
+<li>2、YUI Doc</li>
+</ul>
+<h2 id="自动化测试"><a href="#自动化测试" class="headerlink" title="自动化测试"></a>自动化测试</h2><p>前端测试的话题由来已久，关于一些背景和难题的介绍请阅读《Javascript Web富应用开发》</p>
+<ul>
+<li><p>1、YUI Test Selenium引擎<br>支持一套实用工具来辅助Javascript测试。设计用来跟Selenium一起工作，同时又能容易地进行浏览器测试。<a href="http://seleniumhq.com" target="_blank" rel="external">Seleniumi</a>是一个能够启动浏览器并在它们内部执行命令的服务器。如何配置一台Selenium服务器？如何配置YUI Test Selenium引擎？如何使用YUI Test Selenium引擎？请参考《编写可维护Javascript》的第19章 page181</p>
+</li>
+<li><p>2、Yeti<br>用javascript写测试并在node.js上运行。需要有一个html文件来自动执行你的测试。</p>
+</li>
+<li><p>3、PhantomJS<br>PhantomJS是一个命令行版本的Webkit,尽管并非完全相同，但是它的表现跟webkit(chrome和safari的渲染引擎)相似，并且可以不打开浏览器就能执行真正的浏览器测试。 官网地址：<a href="http://www.phantomjs.org" target="_blank" rel="external">http://www.phantomjs.org</a>。附带的脚本可以在 Jasmine和QUnit 上运行测试。 &lt;编写可维护Javascript&gt;第19章     page186</p>
+</li>
+<li><p>4、JsTestDriver<br>官网地址<a href="http://code.google.com/p/js-test-driver" target="_blank" rel="external">http://code.google.com/p/js-test-driver</a>。基于已安装的浏览器运行测试。</p>
+</li>
+</ul>
+<h2 id="组装“构建系统”"><a href="#组装“构建系统”" class="headerlink" title="组装“构建系统”"></a>组装“构建系统”</h2><h3 id="编制打包计划"><a href="#编制打包计划" class="headerlink" title="编制打包计划"></a>编制打包计划</h3><ul>
+<li><p>1、开发<br>开发版本应该是由开发人员驱动的，构建过程应该尽可能地快，以免打扰开发人员的开发过程。不应当超过15秒</p>
+</li>
+<li><p>2、集成<br>集成版本是一个按照固定时间表自动构建的版本。集成版本负责寻找整个系统中的问题。构建过程可以花费稍长时间但是必须尽可能的详尽。</p>
+</li>
+<li><p>3、发布<br>一个按需执行的构建，仅仅在推送到生产环境之前执行。获得代码的最终版本以便部署。</p>
+</li>
+</ul>
+<h3 id="CI系统（持续集成系统）"><a href="#CI系统（持续集成系统）" class="headerlink" title="CI系统（持续集成系统）"></a>CI系统（持续集成系统）</h3><ul>
+<li>1、Jenkins</li>
+</ul>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/03/browser-add-http/" rel="next" title="browser-add-http">
+                <i class="fa fa-chevron-left"></i> browser-add-http
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/07/2015-plan/" rel="prev" title="2015年计划表">
+                2015年计划表 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/12/04/maintainable-code/"
+           data-title="<编写可维护的JavaScript>读书笔记" data-url="http://ning0707.com/2015/12/04/maintainable-code/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://p3.qhimg.com/d/inn/2165ca94/avator.jpg" alt="潇意" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">潇意</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">踏实工作，潇洒生活</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Sally-Xiao" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> Github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/2670550985/profile?topnav=1&wvr=6" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 微博
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/59508702/" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 豆瓣
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/xiao-yi-24-71" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 知乎
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#lt-编写可维护的JavaScript-gt-读书笔记"><span class="nav-number">1.</span> <span class="nav-text"><编写可维护的JavaScript>读书笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章-语句和表达式"><span class="nav-number">1.1.</span> <span class="nav-text">第三章 语句和表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#switch写法"><span class="nav-number">1.1.1.</span> <span class="nav-text">switch写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#with"><span class="nav-number">1.1.2.</span> <span class="nav-text">with</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-in"><span class="nav-number">1.1.3.</span> <span class="nav-text">for-in</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for循环"><span class="nav-number">1.1.4.</span> <span class="nav-text">for循环</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第七章-事件处理"><span class="nav-number">1.2.</span> <span class="nav-text">第七章 事件处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#隔离应用逻辑"><span class="nav-number">1.2.1.</span> <span class="nav-text">隔离应用逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不要分发event对象"><span class="nav-number">1.2.2.</span> <span class="nav-text">不要分发event对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第8章-避免“空比较”"><span class="nav-number">1.3.</span> <span class="nav-text">第8章 避免“空比较”</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是空比较"><span class="nav-number">1.3.1.</span> <span class="nav-text">什么是空比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有效比较"><span class="nav-number">1.3.2.</span> <span class="nav-text">有效比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检验数组"><span class="nav-number">1.3.3.</span> <span class="nav-text">检验数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检测对象的属性"><span class="nav-number">1.3.4.</span> <span class="nav-text">检测对象的属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将配置数据从代码中分离出来"><span class="nav-number">1.4.</span> <span class="nav-text">将配置数据从代码中分离出来</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是配置数据"><span class="nav-number">1.4.1.</span> <span class="nav-text">什么是配置数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以什么样的方式抽离？"><span class="nav-number">1.4.2.</span> <span class="nav-text">以什么样的方式抽离？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抛出自定义错误"><span class="nav-number">1.5.</span> <span class="nav-text">抛出自定义错误</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#必须使用Error对象，如下所示"><span class="nav-number">1.5.1.</span> <span class="nav-text">必须使用Error对象，如下所示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#何时应该抛出错误"><span class="nav-number">1.5.2.</span> <span class="nav-text">何时应该抛出错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#该使用try…catch还是throw"><span class="nav-number">1.5.3.</span> <span class="nav-text">该使用try…catch还是throw?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建自己的错误"><span class="nav-number">1.5.4.</span> <span class="nav-text">构建自己的错误</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不是你的对象不要动"><span class="nav-number">1.6.</span> <span class="nav-text">不是你的对象不要动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对于已存在的对象的处理原则："><span class="nav-number">1.6.1.</span> <span class="nav-text">对于已存在的对象的处理原则：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是门面模式"><span class="nav-number">1.6.2.</span> <span class="nav-text">什么是门面模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是Polyfill"><span class="nav-number">1.6.3.</span> <span class="nav-text">什么是Polyfill</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阻止修改"><span class="nav-number">1.6.4.</span> <span class="nav-text">阻止修改</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器嗅探"><span class="nav-number">1.7.</span> <span class="nav-text">浏览器嗅探</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#User-Agent检测"><span class="nav-number">1.7.1.</span> <span class="nav-text">User-Agent检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性检测"><span class="nav-number">1.7.2.</span> <span class="nav-text">特性检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免特性推断"><span class="nav-number">1.7.3.</span> <span class="nav-text">避免特性推断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免浏览器推断"><span class="nav-number">1.7.4.</span> <span class="nav-text">避免浏览器推断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.7.5.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动化"><span class="nav-number">1.8.</span> <span class="nav-text">自动化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章和目录结构"><span class="nav-number">1.9.</span> <span class="nav-text">文章和目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最佳实践"><span class="nav-number">1.9.1.</span> <span class="nav-text">最佳实践</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本结构"><span class="nav-number">1.9.2.</span> <span class="nav-text">基本结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ant"><span class="nav-number">1.10.</span> <span class="nav-text">Ant</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件精简和压缩"><span class="nav-number">1.10.1.</span> <span class="nav-text">文件精简和压缩</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档化"><span class="nav-number">1.11.</span> <span class="nav-text">文档化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动化测试"><span class="nav-number">1.12.</span> <span class="nav-text">自动化测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组装“构建系统”"><span class="nav-number">1.13.</span> <span class="nav-text">组装“构建系统”</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编制打包计划"><span class="nav-number">1.13.1.</span> <span class="nav-text">编制打包计划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CI系统（持续集成系统）"><span class="nav-number">1.13.2.</span> <span class="nav-text">CI系统（持续集成系统）</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">潇意</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xiaoyi0104"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

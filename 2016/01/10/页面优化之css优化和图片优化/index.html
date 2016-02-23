@@ -1,0 +1,749 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="PC端, css, 图片, 性能优化," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="潇意-前端工程师" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="代码组织1、为了让首页能够尽可能快地呈现在用户面前，希望首页的代码尽可能地少加载，初步决定让其代码跟其他页面分开。
+gulp拷贝文件如html文件。
+123456789gulp.task(&quot;moveHtml&quot;, function()&amp;#123;    return gulp.src([        &apos;photo/app/delete/*.html&apos;,        &apos;photo/app/down">
+<meta property="og:type" content="article">
+<meta property="og:title" content="页面优化之css优化和图片优化">
+<meta property="og:url" content="http://ning0707.com/2016/01/10/页面优化之css优化和图片优化/index.html">
+<meta property="og:site_name" content="潇意-前端工程师">
+<meta property="og:description" content="代码组织1、为了让首页能够尽可能快地呈现在用户面前，希望首页的代码尽可能地少加载，初步决定让其代码跟其他页面分开。
+gulp拷贝文件如html文件。
+123456789gulp.task(&quot;moveHtml&quot;, function()&amp;#123;    return gulp.src([        &apos;photo/app/delete/*.html&apos;,        &apos;photo/app/down">
+<meta property="og:updated_time" content="2016-01-12T02:30:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="页面优化之css优化和图片优化">
+<meta name="twitter:description" content="代码组织1、为了让首页能够尽可能快地呈现在用户面前，希望首页的代码尽可能地少加载，初步决定让其代码跟其他页面分开。
+gulp拷贝文件如html文件。
+123456789gulp.task(&quot;moveHtml&quot;, function()&amp;#123;    return gulp.src([        &apos;photo/app/delete/*.html&apos;,        &apos;photo/app/down">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always',
+    motion: true
+  };
+</script>
+
+  <title> 页面优化之css优化和图片优化 | 潇意-前端工程师 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3ec2aac61faec5c202bb97d21793f521";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">潇意-前端工程师</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">可以努力，绝不将就</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                页面优化之css优化和图片优化
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-10T19:34:32+08:00" content="2016-01-10">
+              2016-01-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/10/页面优化之css优化和图片优化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/10/页面优化之css优化和图片优化/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="代码组织"><a href="#代码组织" class="headerlink" title="代码组织"></a>代码组织</h2><p>1、为了让首页能够尽可能快地呈现在用户面前，希望首页的代码尽可能地少加载，初步决定让其代码跟其他页面分开。</p>
+<h3 id="gulp拷贝文件"><a href="#gulp拷贝文件" class="headerlink" title="gulp拷贝文件"></a>gulp拷贝文件</h3><p>如html文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">"moveHtml"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.src([</span><br><span class="line">        <span class="string">'photo/app/delete/*.html'</span>,</span><br><span class="line">        <span class="string">'photo/app/download/*.html'</span>,</span><br><span class="line">        <span class="string">'photo/app/index/*.html'</span>,</span><br><span class="line">        <span class="string">'photo/app/info/*.html'</span>,</span><br><span class="line">        <span class="string">'photo/app/list/*.html'</span></span><br><span class="line">    ]).pipe(gulp.dest(<span class="string">'photo/build/'</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h2><p>1、图片压缩</p>
+<p>所有的图片都用gulp-imagemin插件压缩。能够使得图片的文件大小减少一些，当然图片中重复的元素越多，压缩的比率越大。</p>
+<p>2、css sprites</p>
+<p>首先在命令行安装gulp-css-spriter。执行如下命令：<br>全局安装: </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cnpm install gulp-css-spriter -g</span><br></pre></td></tr></table></figure>
+<p>局部安装（安装在所在目录下面）:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install gulp-css-spriter --save-dev</span><br></pre></td></tr></table></figure>
+<p>然后修改gulpfile.js文件，添加如下的命令：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var spriter = require(&#39;gulp-css-spriter&#39;);&#10;gulp.task(&#39;sprites&#39;, function() &#123;&#10;    return gulp.src(&#39;photo/build/static/css/index.css&#39;)&#10;        .pipe(spriter(&#123;&#10;            // &#38634;&#30887;&#22270;&#30340;&#20445;&#23384;&#20301;&#32622;&#10;            &#39;spriteSheet&#39;: &#39;photo/build/static/img/spritesheet.png&#39;,&#10;            // css&#20013;&#24341;&#29992;&#22270;&#29255;&#30340;&#22320;&#22336;&#10;            &#39;pathToSpriteSheetFromCSS&#39;: &#39;photo/build/static/img/spritesheet.png&#39;&#10;        &#125;))&#10;        .pipe(gulp.dest(&#39;photo/dist/css&#39;));&#10;&#125;);</span><br></pre></td></tr></table></figure>
+<p>为了不让把index.css中的所有图片都生成雪碧图，我们需要做如下处理。给图片地址后面加上?_spriter。如下图所示：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span><span class="value">: <span class="function">url</span>(<span class="string">"#&#123;$imgUrl&#125;main-2-download.png?__spriter"</span>) left top no-repeat;</span></span><br></pre></td></tr></table></figure>
+<p>最后修改<strong>node_modules/gulp-css-spriter/lib/map-over-styles-and-transform-background-image-declarations.js</strong>,使用局部安装会比较好，直接在本地目录下就可完成。把48行的if…else if…做如下修改：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(transformedDeclaration.property === <span class="string">'background-image'</span>) &#123;</span><br><span class="line">					<span class="keyword">return</span> cb(transformedDeclaration, declarationIndex, declarations);</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="comment">// Background is a shorthand property so make sure `url()` is in there</span></span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span>(transformedDeclaration.property === <span class="string">'background'</span>) &#123;</span><br><span class="line">					<span class="keyword">var</span> hasImageValue = spriterUtil.backgroundURLRegex.test(transformedDeclaration.value);</span><br><span class="line">                </span><br><span class="line">					<span class="keyword">if</span>(hasImageValue) &#123;</span><br><span class="line">						<span class="keyword">return</span> cb(transformedDeclaration, declarationIndex, declarations);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br></pre></td></tr></table></figure>
+<p>替换成</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(transformedDeclaration.property === <span class="string">'background-image'</span> &amp;&amp; <span class="regexp">/\?__spriter/i</span>.test(transformedDeclaration.value)) &#123;</span><br><span class="line"></span><br><span class="line">					transformedDeclaration.value = transformedDeclaration.value.replace(<span class="string">'?__spriter'</span>,<span class="string">''</span>);</span><br><span class="line">					<span class="keyword">return</span> cb(transformedDeclaration, declarationIndex, declarations);</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="comment">// Background is a shorthand property so make sure `url()` is in there 且判断url是否有?__spriter后缀</span></span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span>(transformedDeclaration.property === <span class="string">'background'</span> &amp;&amp; <span class="regexp">/\?__spriter/i</span>.test(transformedDeclaration.value)) &#123;</span><br><span class="line"></span><br><span class="line">					transformedDeclaration.value = transformedDeclaration.value.replace(<span class="string">'?__spriter'</span>,<span class="string">''</span>);</span><br><span class="line">					<span class="keyword">var</span> hasImageValue = spriterUtil.backgroundURLRegex.test(transformedDeclaration.value);</span><br><span class="line"></span><br><span class="line">					<span class="keyword">if</span>(hasImageValue) &#123;</span><br><span class="line">						<span class="keyword">return</span> cb(transformedDeclaration, declarationIndex, declarations);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br></pre></td></tr></table></figure>
+<p>大概的意思就是比较图片地址后面是否有?_spriter后缀，有就执行操作，这样可以保留原本不需要生成雪碧图的图片。赞作者的思路(博客: <a href="http://www.cnblogs.com/dreamback/p/gulp-css-spriter.html" target="_blank" rel="external">http://www.cnblogs.com/dreamback/p/gulp-css-spriter.html</a>, 另官网地址: <a href="https://www.npmjs.com/package/gulp-css-spriter/" target="_blank" rel="external">https://www.npmjs.com/package/gulp-css-spriter/</a>。</p>
+<p>因为css代码是用sass编译的，所以为了方便，我在编译完sass之后自动将合成雪碧图。我的代码如下:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">"sass"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.src(</span><br><span class="line">        [</span><br><span class="line">            <span class="string">'photo/app/delete/delete.scss'</span>,</span><br><span class="line">            ...</span><br><span class="line">        ]</span><br><span class="line">    ).pipe(sass())</span><br><span class="line">    .pipe(spriter(&#123;</span><br><span class="line">        <span class="comment">// 雪碧图的保存位置</span></span><br><span class="line">        <span class="string">'spriteSheet'</span>: <span class="string">'photo/build/static/img/spritesheet.png'</span>,</span><br><span class="line">        <span class="comment">// css中引用图片的地址</span></span><br><span class="line">        <span class="string">'pathToSpriteSheetFromCSS'</span>: <span class="string">'../img/spritesheet.png'</span></span><br><span class="line">    &#125;))</span><br><span class="line">    .pipe(gulp.dest(<span class="string">'photo/build/static/css'</span>))</span><br><span class="line">    .pipe(browserSync.reload(&#123;</span><br><span class="line">        stream: <span class="literal">true</span></span><br><span class="line">    &#125;));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>可以一次添加多个css文件，最后生成的雪碧图保存在同一张图片中。</p>
+<h2 id="css合并"><a href="#css合并" class="headerlink" title="css合并"></a>css合并</h2><h3 id="promise使用与理解"><a href="#promise使用与理解" class="headerlink" title="promise使用与理解"></a>promise使用与理解</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> timer = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">var</span> loop = <span class="function"><span class="keyword">function</span>(<span class="params">speed</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> deferred = $.Deferred();</span><br><span class="line"></span><br><span class="line">    timer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">continueFn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            clearTimeout(timer);</span><br><span class="line">            loop(speed).done(deferred.resolve());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">stopFn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            clearTimeout(timer);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> deferred.resolve().done(continueFn).fail(stopFn);</span><br><span class="line">    &#125;, speed);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> deferred.promise();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> deferred = $.Deferred();</span><br><span class="line">    <span class="keyword">var</span> num = <span class="built_in">parseInt</span>(<span class="built_in">Math</span>.random()*<span class="number">4</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(num);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"哈哈哈，我吃药了我"</span>);</span><br><span class="line">    <span class="keyword">if</span>(num == <span class="number">2</span>)&#123;</span><br><span class="line">        deferred.reject();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        deferred.resolve();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> deferred.promise();</span><br><span class="line">&#125;</span><br><span class="line">loop(<span class="number">2000</span>).done(fn);</span><br></pre></td></tr></table></figure>
+<p>还有问题，先暂时用老的方法。</p>
+<p>参考地址：<a href="http://www.html-js.com/article/Study-JavaScript-deeply-JavaScript-Promises--chain-Promise-every-day" target="_blank" rel="external">http://www.html-js.com/article/Study-JavaScript-deeply-JavaScript-Promises–chain-Promise-every-day</a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PC端-css-图片-性能优化/" rel="tag">#PC端, css, 图片, 性能优化</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/10/移动端布局小结-一/" rel="next" title="移动端布局小结(一)">
+                <i class="fa fa-chevron-left"></i> 移动端布局小结(一)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/24/node-and-express/" rel="prev" title="阅读《Node与Express开发》">
+                阅读《Node与Express开发》 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/01/10/页面优化之css优化和图片优化/"
+           data-title="页面优化之css优化和图片优化" data-url="http://ning0707.com/2016/01/10/页面优化之css优化和图片优化/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://p3.qhimg.com/d/inn/2165ca94/avator.jpg" alt="潇意" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">潇意</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">踏实工作，潇洒生活</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Sally-Xiao" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> Github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/2670550985/profile?topnav=1&wvr=6" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 微博
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/59508702/" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 豆瓣
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/xiao-yi-24-71" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 知乎
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码组织"><span class="nav-number">1.</span> <span class="nav-text">代码组织</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#gulp拷贝文件"><span class="nav-number">1.1.</span> <span class="nav-text">gulp拷贝文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#压缩"><span class="nav-number">2.</span> <span class="nav-text">压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css合并"><span class="nav-number">3.</span> <span class="nav-text">css合并</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#promise使用与理解"><span class="nav-number">3.1.</span> <span class="nav-text">promise使用与理解</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">潇意</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xiaoyi0104"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

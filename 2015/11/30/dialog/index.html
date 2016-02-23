@@ -1,0 +1,779 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript、css," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="潇意-前端工程师" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="记每日一练—弹窗组件工作一年多了，发现自己的时间越来越不够用，基本的工作还是以前的那些工作，只是工作量大了一些，但基本的内容还是一致，想着如果一直这样发展下去，那么工作的时间就会挤压我的生活时间，这将严重影响我的生活时间。于是我就在想，我该如何提高我的工作效率，分析我的工作模式，发现有如下的问题影响着我快速完成工作：
+
+1、重复的代码我一直反复地写，也不是说不想复用，只是代码写得比较别扭，自己都不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日一练----弹窗组件">
+<meta property="og:url" content="http://ning0707.com/2015/11/30/dialog/index.html">
+<meta property="og:site_name" content="潇意-前端工程师">
+<meta property="og:description" content="记每日一练—弹窗组件工作一年多了，发现自己的时间越来越不够用，基本的工作还是以前的那些工作，只是工作量大了一些，但基本的内容还是一致，想着如果一直这样发展下去，那么工作的时间就会挤压我的生活时间，这将严重影响我的生活时间。于是我就在想，我该如何提高我的工作效率，分析我的工作模式，发现有如下的问题影响着我快速完成工作：
+
+1、重复的代码我一直反复地写，也不是说不想复用，只是代码写得比较别扭，自己都不">
+<meta property="og:image" content="http://p5.qhimg.com/d/inn/9f06dc50/alert.png">
+<meta property="og:updated_time" content="2015-12-01T01:33:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="每日一练----弹窗组件">
+<meta name="twitter:description" content="记每日一练—弹窗组件工作一年多了，发现自己的时间越来越不够用，基本的工作还是以前的那些工作，只是工作量大了一些，但基本的内容还是一致，想着如果一直这样发展下去，那么工作的时间就会挤压我的生活时间，这将严重影响我的生活时间。于是我就在想，我该如何提高我的工作效率，分析我的工作模式，发现有如下的问题影响着我快速完成工作：
+
+1、重复的代码我一直反复地写，也不是说不想复用，只是代码写得比较别扭，自己都不">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always',
+    motion: true
+  };
+</script>
+
+  <title> 每日一练----弹窗组件 | 潇意-前端工程师 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3ec2aac61faec5c202bb97d21793f521";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">潇意-前端工程师</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">可以努力，绝不将就</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                每日一练----弹窗组件
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-11-30T09:53:11+08:00" content="2015-11-30">
+              2015-11-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/30/dialog/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/30/dialog/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h1 id="记每日一练—弹窗组件"><a href="#记每日一练—弹窗组件" class="headerlink" title="记每日一练—弹窗组件"></a>记每日一练—弹窗组件</h1><p>工作一年多了，发现自己的时间越来越不够用，基本的工作还是以前的那些工作，只是工作量大了一些，但基本的内容还是一致，想着如果一直这样发展下去，那么工作的时间就会挤压我的生活时间，这将严重影响我的生活时间。于是我就在想，我该如何提高我的工作效率，分析我的工作模式，发现有如下的问题影响着我快速完成工作：</p>
+<ul>
+<li>1、重复的代码我一直反复地写，也不是说不想复用，只是代码写得比较别扭，自己都不想看，总想着重新写是不是会更好些呢？    </li>
+<li>2、平时工作时写代码总感觉别扭，没有找到一个合适的方式编码，写的代码混乱，代码一出问题，需要较长的时间来查找问题；</li>
+<li>3、代码调试用的不够熟悉，每次都只能用console.log的方式来猜问题的原因。</li>
+</ul>
+<h2 id="针对以上的问题，我有哪些解决办法呢？"><a href="#针对以上的问题，我有哪些解决办法呢？" class="headerlink" title="针对以上的问题，我有哪些解决办法呢？"></a>针对以上的问题，我有哪些解决办法呢？</h2><ul>
+<li>把每一次用到的通用功能封装起来，放在gitub上面，以后有类似问题时可以拿出来改一改就能用，前提是代码写的易读；</li>
+<li>针对第二点，我咨询了我的组长，我觉得他给我说的方案很靠谱，拿到业务之前，先把业务模块化，写完每一个模块，再考虑模块之间交互的问题，针对交互的部分，可以考虑抽成中间件的形式；</li>
+<li>针对第三点，打算把工具的使用放在最重要的地方，工具不会用严重影响我的工作进度，当然对知识的不够熟悉也是一个方面；</li>
+<li>争取每天可以拿出一个小时的时间来学习基础知识，自己在基础知识方面的理解还是比较欠缺的；个人认为这个是比我去学习新的框架更为重要的一点；至少对于目前的我来说是这样子的；</li>
+</ul>
+<h2 id="还是先来说说我写的这个组件吧！"><a href="#还是先来说说我写的这个组件吧！" class="headerlink" title="还是先来说说我写的这个组件吧！"></a>还是先来说说我写的这个组件吧！</h2><h3 id="先来说说我的思路吧"><a href="#先来说说我的思路吧" class="headerlink" title="先来说说我的思路吧"></a>先来说说我的思路吧</h3><p>做一个东西，当然是先了解需求，我觉得我现在还是一个小菜鸟，我做出来的组件先是考虑我的使用场景；我用对话框主要有如下三个场景：</p>
+<ul>
+<li>1、类似alert弹窗的功能，只做消息提示的作用，但偶尔产品会想要修改确定按钮上的文字，点击确定按钮触发操作，比如改变网站背景颜色之类的；</li>
+<li>2、类似confirm弹窗的功能，提供用户一个选择的操作，或者在用户进行某个危险的操作时提示用户，以免误操作，造成不必要的损失；</li>
+<li>3、自定义弹窗功能，比如登录、注册等提交用户信息的功能；</li>
+</ul>
+<p>为了达到上述的需求，我是这样设计我的代码滴！    </p>
+<p>首先，有一个基础的弹窗构建类，提供弹窗构建，关闭，显示，更新内容，绑定确定按钮事件，绑定取消按钮事件；</p>
+<p>代码结构如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$.extend(Dialog.prototype, &#123;</span><br><span class="line">    init: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    &#125;,</span><br><span class="line">    render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    &#125;,</span><br><span class="line">    bindCloseEvent: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    &#125;,</span><br><span class="line">    bindOkEvent: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    &#125;,</span><br><span class="line">    bindCancelEvent: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    &#125;,</span><br><span class="line">    show: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    &#125;,</span><br><span class="line">    hide: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    &#125;,</span><br><span class="line">    updateCallback: <span class="function"><span class="keyword">function</span>(<span class="params">type, callback</span>)</span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p> 通过配置如下的参数可以选择性的使用相应功能：</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">className: <span class="string">""</span>, <span class="comment">// 弹窗自定义的类名（不要与页面已有元素同名）</span></span><br><span class="line">title: <span class="string">"弹窗"</span>, <span class="comment">// 标题</span></span><br><span class="line">mainHtml: <span class="string">""</span>, <span class="comment">//  自定义弹窗的内容</span></span><br><span class="line">hasCloseBtn: <span class="literal">true</span>, <span class="comment">//  是否可以关闭弹窗</span></span><br><span class="line">okText: <span class="string">"确定"</span>, <span class="comment">// 确定按钮上显示的文案</span></span><br><span class="line">hasOkBtn: <span class="literal">true</span>, <span class="comment">// 是否显示确定按钮</span></span><br><span class="line">okCallback: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;, <span class="comment">// 点击确定按钮之后的回调</span></span><br><span class="line">hasCancelBtn: <span class="literal">true</span>, <span class="comment">// 是否有取消按钮</span></span><br><span class="line">cancelText: <span class="string">"取消"</span>, <span class="comment">// 取消按钮上显示的文案</span></span><br><span class="line">cancelCallback: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125; <span class="comment">// 点击取消按钮之后的回调</span></span><br></pre></td></tr></table></figure>
+<p> 为了不暴露不必要的方法给用户用，我另外用了一个方法来暴露给用户，我是这样实现的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyDialog</span>(<span class="params">options</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.dialog = <span class="keyword">new</span> Dialog(options);</span><br><span class="line">&#125;</span><br><span class="line">$.extend(MyDialog.prototype, &#123;</span><br><span class="line">    init: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.dialog.init();</span><br><span class="line">    &#125;,</span><br><span class="line">    show: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.dialog.show();</span><br><span class="line">    &#125;,</span><br><span class="line">    hide: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.dialog.hide();</span><br><span class="line">    &#125;,</span><br><span class="line">    updateCallback: <span class="function"><span class="keyword">function</span>(<span class="params">type, callback</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.dialog.updateCallback(type, callback);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.MyDialog = MyDialog;</span><br></pre></td></tr></table></figure>
+<p>这样用户就不用关心我的渲染方法、绑定事件的方法是如何实现的呢！感觉棒棒哒，只是觉得多写一个类有点占篇幅呢，下次找个更好地办法去实现：</p>
+<p>下面是我用这个基础组件实现的alert弹窗，基本思路是：如果页面中已有弹窗的结构，就不用再过多渲染，只需要更改弹窗的内容即可。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自定义alert方法</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> alertDialog = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">var</span> className = <span class="string">"my-alert"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">window</span>.alert = <span class="function"><span class="keyword">function</span>(<span class="params">msg, callback</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(alertDialog)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 更新弹窗内容</span></span><br><span class="line">            $(<span class="string">"."</span>+className+<span class="string">" .main p"</span>).html(msg);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(callback)&#123;</span><br><span class="line"></span><br><span class="line">                alertDialog.updateCallback(<span class="string">"ok"</span>, callback);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            alertDialog.show();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">            alertDialog = <span class="keyword">new</span> MyDialog(&#123;</span><br><span class="line">                className: className,</span><br><span class="line">                mainHtml: <span class="string">"&lt;p&gt;"</span> + msg + <span class="string">"&lt;/p&gt;"</span>,</span><br><span class="line">                okCallback: callback,</span><br><span class="line">                hasCancelBtn: <span class="literal">false</span></span><br><span class="line">            &#125;);</span><br><span class="line">            alertDialog.init();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>引入组件，然后在页面这样调用即可:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">"你确定要关闭我吗？"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"关闭弹窗！"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>最后运行的结果如下：</p>
+<p><img src="http://p5.qhimg.com/d/inn/9f06dc50/alert.png" alt="alert弹窗"></p>
+<p>这样子，产品经理再也不用说我做的对话框太丑了！</p>
+<p>confirm对话框用类似的方法就可以实现，只是最后调用的时候采用如下的方式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">confirm(<span class="string">"你确定要关闭弹窗吗？"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"确定关闭弹窗"</span>);</span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"取消关闭弹窗"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>OK啦，现在我的弹窗组件棒棒滴，至少在我看来我用着是很顺手滴，接下来我想着我能不能做一个前端错误报警系统，主要原因是我今天又找了半天的bug,因为代码发布系统不完善，总是去找后端同学帮忙发布，快被我烦死了都~有了错误报警系统，我就能更准确地定位代码错误的位置，尽快解决问题呢！</p>
+<p>另外，今天遇到了scrollTop的问题，对于页面的这些高度，位置什么的现在是忘得一干二净了，明天不写组件，抽个时间好好来研究一下，晚安，至未来更厉害的我！</p>
+<p>源代码地址：<a href="https://github.com/Sally-Xiao/-Weekly/tree/master/dialog" target="_blank" rel="external">https://github.com/Sally-Xiao/-Weekly/tree/master/dialog</a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript、css/" rel="tag">#javascript、css</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/25/to-do-list/" rel="next" title="技术清单">
+                <i class="fa fa-chevron-left"></i> 技术清单
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/01/scrollTop-scrollLeft-scrollHeight-scrollWidth/" rel="prev" title="理解scrollTop、scrollLeft、scrollHeight、scrollWidth">
+                理解scrollTop、scrollLeft、scrollHeight、scrollWidth <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/11/30/dialog/"
+           data-title="每日一练----弹窗组件" data-url="http://ning0707.com/2015/11/30/dialog/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://p3.qhimg.com/d/inn/2165ca94/avator.jpg" alt="潇意" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">潇意</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">踏实工作，潇洒生活</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Sally-Xiao" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> Github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/2670550985/profile?topnav=1&wvr=6" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 微博
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/59508702/" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 豆瓣
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/xiao-yi-24-71" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 知乎
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#记每日一练—弹窗组件"><span class="nav-number">1.</span> <span class="nav-text">记每日一练—弹窗组件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#针对以上的问题，我有哪些解决办法呢？"><span class="nav-number">1.1.</span> <span class="nav-text">针对以上的问题，我有哪些解决办法呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#还是先来说说我写的这个组件吧！"><span class="nav-number">1.2.</span> <span class="nav-text">还是先来说说我写的这个组件吧！</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#先来说说我的思路吧"><span class="nav-number">1.2.1.</span> <span class="nav-text">先来说说我的思路吧</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">潇意</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xiaoyi0104"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
